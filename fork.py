@@ -4,7 +4,7 @@ import os
 
 i = 0
 message = ''
-while True:
+while(1):
     print(i)
     
     if(i == 0):
@@ -15,11 +15,11 @@ while True:
     if(temp):
         c = temp.text
         
-        while True: 
+        while(1): 
             m = re.search('<a href="\/wiki\/([^"]*)"(?: class="mw-redirect")? title="([^"]*)">([^<]*)<\/a>', c)
             if(m):
                 g = m.groups()
-                message = message + g[2] + '\n'
+                message += g[2] + '\n'
                 
                 print(g[2])
                 
@@ -27,12 +27,13 @@ while True:
             else:
                 break
                 
-        i = i + 1
+        i += 1
         
         m = re.search('<a href="\/([^"]*)" title="특수:모든문서">다음 문서 \((?:[^<]*)<\/a>', c)
         if(m):
             g = m.groups()
             url = re.sub('&amp;', '&', g[0], 1)
+            
             print(url)
         else:
             break
